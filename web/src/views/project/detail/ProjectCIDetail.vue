@@ -9,7 +9,7 @@
                   <div class="f-r" v-if="projectInfo.operations">
                     <el-button @click="$refs.mark.show(projectInfo)" v-if="projectInfo.operations['manual']">人工卡点</el-button>
                     <el-button @click="$refs.merge.show(projectInfo)" v-if="projectInfo.operations['merge-branch']">合并分支</el-button>
-                    <el-button @click="$refs.goToBuild.doShows(projectInfo.id, projectInfo.stage_id, projectInfo.step)" v-if="projectInfo.operations['test']">单测</el-button>
+                    <el-button @click="$refs.runtest.doShows(projectInfo.id, projectInfo.stage_id, projectInfo.step)" v-if="projectInfo.operations['test']">单测</el-button>
                     <el-button @click="$refs.goToBuild.doShows(projectInfo.id, projectInfo.stage_id, projectInfo.step)" v-if="projectInfo.operations['build']">构建</el-button>
                     <el-button @click="$refs.deploy.doShows(projectInfo)" v-if="projectInfo.operations['deploy']">部署</el-button>
                     <el-button @click="termination(projectInfo.id, projectInfo.stage_id, projectInfo.step_type)" v-if="projectInfo.operations['terminate']">终止</el-button>
@@ -142,6 +142,7 @@
       <back-to ref="backto" v-on:getprojectReleaseList="getVersionInfo"></back-to>
       <project-deploy ref="deploy" v-on:getprojectReleaseList="getVersionInfo"></project-deploy>
       <next-stage v-on:getprojectReleaseList="getVersionInfo" ref="nextstage"></next-stage>
+      <run-test v-on:getprojectReleaseList="getVersionInfo" ref="runtest"></run-test>
       <to-build v-on:getprojectReleaseList="getVersionInfo" ref="goToBuild"></to-build>
       <version-add v-on:getlist="getVersionInfo" ref="versionAdd"></version-add>
       <publish-edit v-on:getPublishBaseInfo="getVersionBaseInfo" ref="publishEdit"></publish-edit>
@@ -283,6 +284,7 @@
   import ProjectMark from '../dialogCI/ProjectMark'; // 人工卡点
   import BackTo from '../dialogCI/ProjectBackTo'; // 回退
   import ToBuild from '../dialogCI/ProjectBuild'; //构建
+  import RunTest from '../dialogCI/ProjectTest'; //单测
   import ProjectDeploy from '../dialogCI/ProjectDeploy'; // 部署
   import versionAdd from '../dialogCI/ProjectVersionAdd'; //添加应用
   import PublishEdit from '../dialogCI/PublishEdit'; // 编辑版本
@@ -309,6 +311,7 @@ export default {
     BackTo,
     NextStage,
     ToBuild,
+    RunTest,
     ProjectMark,
     ProjectDeploy,
     PageNav,
