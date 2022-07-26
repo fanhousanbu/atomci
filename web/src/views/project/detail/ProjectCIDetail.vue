@@ -9,6 +9,7 @@
                   <div class="f-r" v-if="projectInfo.operations">
                     <el-button @click="$refs.mark.show(projectInfo)" v-if="projectInfo.operations['manual']">人工卡点</el-button>
                     <el-button @click="$refs.merge.show(projectInfo)" v-if="projectInfo.operations['merge-branch']">合并分支</el-button>
+                    <el-button @click="$refs.goToBuild.doShows(projectInfo.id, projectInfo.stage_id, projectInfo.step)" v-if="projectInfo.operations['test']">单测</el-button>
                     <el-button @click="$refs.goToBuild.doShows(projectInfo.id, projectInfo.stage_id, projectInfo.step)" v-if="projectInfo.operations['build']">构建</el-button>
                     <el-button @click="$refs.deploy.doShows(projectInfo)" v-if="projectInfo.operations['deploy']">部署</el-button>
                     <el-button @click="termination(projectInfo.id, projectInfo.stage_id, projectInfo.step_type)" v-if="projectInfo.operations['terminate']">终止</el-button>

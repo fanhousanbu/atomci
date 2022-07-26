@@ -30,6 +30,7 @@ const (
 	StepSubTaskCheckout     = "checkout"
 	StepSubTaskCompile      = "compile"
 	StepSubTaskBuildImage   = "build-image"
+	StepSubTaskRunTest      = "run-test"
 	StepSubTaskCustomScript = "custom-script"
 )
 

@@ -29,6 +29,8 @@ import (
 
 func getOperationCanEnableByStepStatus(stepType string, status int64, operations *models.PublishOperation) *models.PublishOperation {
 	switch stepType {
+	case models.StepTest:
+		operations.Test = true
 	case models.StepManual:
 		operations.Manual = true
 	case models.StepBuild:

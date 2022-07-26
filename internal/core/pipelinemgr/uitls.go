@@ -335,6 +335,8 @@ func (pm *PipelineManager) CreateBuildJob(creator string, projectID, publishID i
 				return 0, "", err
 			}
 
+		case constant.StepSubTaskRunTest:
+
 		default:
 			logs.Info("%v sub task type did not matched, taskPipelineXmlStr is empty value", subTask.Type)
 		}

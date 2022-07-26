@@ -43,6 +43,13 @@
             </el-form-item>
           </el-col>
         </el-row>
+        <!-- 环境变量 begin -->
+        <el-row>
+          <el-col :span="18">
+
+          </el-col>
+        </el-row>
+        <!-- 环境变量 end -->
       </div>
     </el-form>
     <el-table v-show="!details" style="margin-top:2%" border :data="tableList" @select-all="handleSelectAll" @select='handleSelect' ref="multipleTable">
@@ -210,7 +217,7 @@
           if (data) {
             this.pipeArray = data;
             this.form.pipe = this.pipeArray[0].id;
-          }          
+          }
         });
         this.form = Object.assign({}, formData);
         backend.getProjectApp(this.projectID, (data) => {

@@ -56,6 +56,7 @@ func initMigration() {
 		new(Migration20220324),
 		new(Migration20220414),
 		new(Migration20220415),
+		new(Migration20220726),
 	}
 
 	migrateInTx(migrationTypes)

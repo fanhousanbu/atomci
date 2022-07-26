@@ -42,6 +42,7 @@ const (
 const (
 	StepVerify = "verify"
 	StepManual = "manual"
+	StepTest   = "test"
 	StepBuild  = "build"
 	StepDeploy = "deploy"
 )
@@ -61,6 +62,7 @@ type ProejctReleaseFilterQuery struct {
 
 // PublishOperation ..
 type PublishOperation struct {
+	Test        bool `json:"test"`
 	Manual      bool `json:"manual"`
 	Build       bool `json:"build"`
 	Terminate   bool `json:"terminate"`
