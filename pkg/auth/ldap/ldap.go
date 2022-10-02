@@ -19,8 +19,7 @@ package ldap
 import (
 	"fmt"
 
-	"github.com/go-atomci/atomci/internal/core/auth"
-	"github.com/go-atomci/atomci/internal/middleware/log"
+	"github.com/go-atomci/atomci/pkg/auth"
 
 	"github.com/astaxie/beego"
 	ldap "github.com/colynn/go-ldap-client/v3"
@@ -28,11 +27,22 @@ import (
 
 // Provider a ldap authentication provider.
 // TODO: support configuration later
-type Provider struct{}
+type Provider struct {
+	baseDN       string
+	host         string
+	port         int
+	bindDN       string
+	bindPassword string
+	userFilter   string
+}
 
 // NewProvider creates a new ldap authentication provider.
-func NewProvider() auth.Provider {
-	return &Provider{}
+func NewProvider(opts ...Option) auth.Provider {
+	provider := &Provider{}
+	for _, opt := range opts {
+		opt(provider)
+	}
+	return provider
 }
 
 // Authenticate ..
@@ -53,13 +63,9 @@ func (p *Provider) Authenticate(user, password string) (*auth.ExternalAccount, e
 	}
 	defer client.Close()
 
-	resp := map[string]string{}
 	authVerify, resp, err := client.Authenticate(user, password)
-	if authVerify == false {
-		if err != nil {
-			log.Log.Error("authVerify error: %s", err.Error())
-		}
-		return nil, fmt.Errorf("域帐号或密码错误，或请联系管理员")
+	if !authVerify {
+		return nil, fmt.Errorf("authVerify error: %v", err)
 	}
 
 	// TODO: resp add verification
