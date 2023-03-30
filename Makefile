@@ -7,7 +7,8 @@ NAME = atomci
 
 export CGO_ENABLED := ${CGO_ENABLED}
 export PROJECT_ROOT := $(CURDIR)
-
+export GO111MODULE=on
+export GOPROXY=https://goproxy.cn
 
 VERSION := v1.5.1
 BuildTS = $(shell date -u '+%Y-%m-%d %I:%M:%S')
