@@ -4,9 +4,10 @@ on:
   push:
     branches:
       - master
-      - v1.5.0-feat-app-refactor
+      - v2.0-alpha
 jobs:
   sync:
+    if: github.repository == 'go-atomci/atomci'
     runs-on: ubuntu-latest
 
     steps:
